@@ -224,166 +224,166 @@ void LCD_Cursor_On_Off(_Bool flag)
 	delay(1);
 }
 
-void clock(void)
-{
-		HAL_RTC_GetTime(&hrtc,&sTime, RTC_FORMAT_BIN);
-		sprintf(trans_str,"Время:%02d:%02d:%02d",sTime.Hours,sTime.Minutes,sTime.Seconds);
-		LCD_Set_Cursor(1,0);
-		LCD_Print_String(trans_str);
-		
-		HAL_RTC_GetDate(&hrtc, &DateToUpdate, RTC_FORMAT_BIN);
-		sprintf(trans_str,"Дата:%02d-%02d-20%02d", DateToUpdate.Date, DateToUpdate.Month, DateToUpdate.Year);
-		LCD_Set_Cursor(2,0);
-		LCD_Print_String(trans_str);
-}
+//void clock(void)
+//{
+//		HAL_RTC_GetTime(&hrtc,&sTime, RTC_FORMAT_BIN);
+//		sprintf(trans_str,"Время:%02d:%02d:%02d",sTime.Hours,sTime.Minutes,sTime.Seconds);
+//		LCD_Set_Cursor(1,0);
+//		LCD_Print_String(trans_str);
+//		
+//		HAL_RTC_GetDate(&hrtc, &DateToUpdate, RTC_FORMAT_BIN);
+//		sprintf(trans_str,"Дата:%02d-%02d-20%02d", DateToUpdate.Date, DateToUpdate.Month, DateToUpdate.Year);
+//		LCD_Set_Cursor(2,0);
+//		LCD_Print_String(trans_str);
+//}
 
-void get_time(void)
-{
-	sTime.Hours = 10*(buff[0] - '0') + (buff[1] - '0');
-	sTime.Minutes = 10*(buff[3] - '0') + (buff[4] - '0');
-	sTime.Seconds = 10*(buff[6] - '0') + (buff[7] - '0');
-	HAL_RTC_SetTime(&hrtc,&sTime,RTC_FORMAT_BIN);
-}
+//void get_time(void)
+//{
+//	sTime.Hours = 10*(buff[0] - '0') + (buff[1] - '0');
+//	sTime.Minutes = 10*(buff[3] - '0') + (buff[4] - '0');
+//	sTime.Seconds = 10*(buff[6] - '0') + (buff[7] - '0');
+//	HAL_RTC_SetTime(&hrtc,&sTime,RTC_FORMAT_BIN);
+//}
 
-void get_date(void)
-{
-	DateToUpdate.Date = 10*(buff[9] - '0') + (buff[10] - '0');
-	DateToUpdate.Month = 10*(buff[12] - '0') + (buff[13] - '0');
-	DateToUpdate.Year = 10*(buff[15] - '0') + (buff[16] - '0');
-	HAL_RTC_SetDate(&hrtc,&DateToUpdate,RTC_FORMAT_BIN);
-}
+//void get_date(void)
+//{
+//	DateToUpdate.Date = 10*(buff[9] - '0') + (buff[10] - '0');
+//	DateToUpdate.Month = 10*(buff[12] - '0') + (buff[13] - '0');
+//	DateToUpdate.Year = 10*(buff[15] - '0') + (buff[16] - '0');
+//	HAL_RTC_SetDate(&hrtc,&DateToUpdate,RTC_FORMAT_BIN);
+//}
 
-void random_print(void)
-{
-	static uint8_t rn_array[32],i,j;
-	uint8_t rn_new,k = 0;
-	rn_new = HAL_RNG_GetRandomNumber(&hrng)%32;
-	rn_array[i] = rn_new;
-	while(i > 0)
-	{
-		if(rn_new != rn_array[i - 1])
-			k++;
-		i--;
-	}
-	if(k == j)
-	{
-		if(rn_new < 16)
-			LCD_PrintWithBits(data_pixels,1,rn_new);
-		else
-			LCD_PrintWithBits(data_pixels,2,rn_new%16);
-		j++;
-		delay(100);
-  }
-	i = j;
-}
+//void random_print(void)
+//{
+//	static uint8_t rn_array[32],i,j;
+//	uint8_t rn_new,k = 0;
+//	rn_new = HAL_RNG_GetRandomNumber(&hrng)%32;
+//	rn_array[i] = rn_new;
+//	while(i > 0)
+//	{
+//		if(rn_new != rn_array[i - 1])
+//			k++;
+//		i--;
+//	}
+//	if(k == j)
+//	{
+//		if(rn_new < 16)
+//			LCD_PrintWithBits(data_pixels,1,rn_new);
+//		else
+//			LCD_PrintWithBits(data_pixels,2,rn_new%16);
+//		j++;
+//		delay(100);
+//  }
+//	i = j;
+//}
 
 void set_brightness(uint16_t br)
 {
 	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,br);
 }
 
-uint8_t analyze_protocol(struct protocol* prot,char* buff)
-{
-	uint8_t head_data[5];
-	uint8_t number;
-	uint8_t uart_port;
-	uint32_t data_recieved;
-	uint16_t check_sum_recieved;
-	uint16_t check_sum_calculated;
-	uint64_t protocol_recieved = 0;
-	while(*buff != '\0')
-	{
-		switch(*buff)
-		{
-			case 'a': protocol_recieved |= 0xa; break;
-			case 'A': protocol_recieved |= 0xa; break;
-			case 'b': protocol_recieved |= 0xb; break;
-			case 'B': protocol_recieved |= 0xb; break;
-			case 'c': protocol_recieved |= 0xc; break;
-			case 'C': protocol_recieved |= 0xc; break;
-			case 'd': protocol_recieved |= 0xd; break;
-			case 'D': protocol_recieved |= 0xd; break;
-			case 'e': protocol_recieved |= 0xe; break;
-			case 'E': protocol_recieved |= 0xe; break;
-			case 'f': protocol_recieved |= 0xf; break;
-			case 'F': protocol_recieved |= 0xf; break;
-			default: protocol_recieved |= *buff - '0'; break;
-		}
-		protocol_recieved <<= 4;
-		buff++;
-  }
-	protocol_recieved >>= 4;
-	number = (protocol_recieved >> 52) & 0xf;
-	uart_port = (protocol_recieved >> 48) & 0xf;
-	data_recieved = (protocol_recieved >> 16) & 0xffffffff;
-	check_sum_recieved = protocol_recieved & 0xffff;
-	head_data[0] = (number << 4) | uart_port;
-	head_data[1] = (data_recieved >> 24) & 0xff;
-	head_data[2] = (data_recieved >> 16) & 0xff;
-	head_data[3] = (data_recieved >> 8) & 0xff;
-	head_data[4] = data_recieved & 0xff;
-	check_sum_calculated = HAL_CRC_Calculate(&hcrc,(uint32_t *)head_data,5);
-	if(check_sum_recieved == check_sum_calculated)
-	{
-		prot->number = number;
-		prot->uart_port = uart_port;
-		prot->data = data_recieved;
-		prot->check_sum = check_sum_recieved;
-		return 1;
-	}
-	else
-		return 0;
-}
+//uint8_t analyze_protocol(struct protocol* prot,char* buff)
+//{
+//	uint8_t head_data[5];
+//	uint8_t number;
+//	uint8_t uart_port;
+//	uint32_t data_recieved;
+//	uint16_t check_sum_recieved;
+//	uint16_t check_sum_calculated;
+//	uint64_t protocol_recieved = 0;
+//	while(*buff != '\0')
+//	{
+//		switch(*buff)
+//		{
+//			case 'a': protocol_recieved |= 0xa; break;
+//			case 'A': protocol_recieved |= 0xa; break;
+//			case 'b': protocol_recieved |= 0xb; break;
+//			case 'B': protocol_recieved |= 0xb; break;
+//			case 'c': protocol_recieved |= 0xc; break;
+//			case 'C': protocol_recieved |= 0xc; break;
+//			case 'd': protocol_recieved |= 0xd; break;
+//			case 'D': protocol_recieved |= 0xd; break;
+//			case 'e': protocol_recieved |= 0xe; break;
+//			case 'E': protocol_recieved |= 0xe; break;
+//			case 'f': protocol_recieved |= 0xf; break;
+//			case 'F': protocol_recieved |= 0xf; break;
+//			default: protocol_recieved |= *buff - '0'; break;
+//		}
+//		protocol_recieved <<= 4;
+//		buff++;
+//  }
+//	protocol_recieved >>= 4;
+//	number = (protocol_recieved >> 52) & 0xf;
+//	uart_port = (protocol_recieved >> 48) & 0xf;
+//	data_recieved = (protocol_recieved >> 16) & 0xffffffff;
+//	check_sum_recieved = protocol_recieved & 0xffff;
+//	head_data[0] = (number << 4) | uart_port;
+//	head_data[1] = (data_recieved >> 24) & 0xff;
+//	head_data[2] = (data_recieved >> 16) & 0xff;
+//	head_data[3] = (data_recieved >> 8) & 0xff;
+//	head_data[4] = data_recieved & 0xff;
+//	check_sum_calculated = HAL_CRC_Calculate(&hcrc,(uint32_t *)head_data,5);
+//	if(check_sum_recieved == check_sum_calculated)
+//	{
+//		prot->number = number;
+//		prot->uart_port = uart_port;
+//		prot->data = data_recieved;
+//		prot->check_sum = check_sum_recieved;
+//		return 1;
+//	}
+//	else
+//		return 0;
+//}
 
-void print_protocol(struct protocol* prot)
-{
-	char output[150];
-	sprintf(output,"Датчик № = %d\nПорт USART = %d\nДанные = %u\nКонтрольная сумма = %04X\n",prot->number,prot->uart_port,prot->data,prot->check_sum);
-	print_to_USART(output);
-}
+//void print_protocol(struct protocol* prot)
+//{
+//	char output[150];
+//	sprintf(output,"Датчик № = %d\nПорт USART = %d\nДанные = %u\nКонтрольная сумма = %04X\n",prot->number,prot->uart_port,prot->data,prot->check_sum);
+//	print_to_USART(output);
+//}
 
-void random_protocol(void)
-{
-	uint64_t head_data_rnd = 0;
-	uint64_t protocol_rnd;
-	uint8_t head_data[5];
-	uint8_t i = 0,j = 13,k = 0;
-	uint16_t check_sum;
-	while(i < 10)
-	{
-		head_data_rnd |= HAL_RNG_GetRandomNumber(&hrng)%16;
-		head_data_rnd <<= 4;
-		i++;
-	}
-	head_data_rnd >>= 4;
-	head_data[0] = (head_data_rnd >> 32) & 0xff;
-	head_data[1] = (head_data_rnd >> 24) & 0xff;
-	head_data[2] = (head_data_rnd >> 16) & 0xff;
-	head_data[3] = (head_data_rnd >> 8) & 0xff;
-  head_data[4] = head_data_rnd & 0xff;
-	check_sum = HAL_CRC_Calculate(&hcrc,(uint32_t *)head_data,5);
-	protocol_rnd = (head_data_rnd << 16) + check_sum;
-	while(k < 14)
-	{
-		switch((protocol_rnd >> 4*j--) & 0xf)
-		{
-			case 0: protocol[k] = '0'; break;
-			case 1: protocol[k] = '1'; break;
-			case 2: protocol[k] = '2'; break;
-			case 3: protocol[k] = '3'; break;
-			case 4: protocol[k] = '4'; break;
-			case 5: protocol[k] = '5'; break;
-			case 6: protocol[k] = '6'; break;
-			case 7: protocol[k] = '7'; break;
-			case 8: protocol[k] = '8'; break;
-			case 9: protocol[k] = '9'; break;
-			case 10: protocol[k] = 'a'; break;
-			case 11: protocol[k] = 'b'; break;
-			case 12: protocol[k] = 'c'; break;
-			case 13: protocol[k] = 'd'; break;
-			case 14: protocol[k] = 'e'; break;
-			case 15: protocol[k] = 'f'; break;
-		}
-		k++;
-	}
-}
+//void random_protocol(void)
+//{
+//	uint64_t head_data_rnd = 0;
+//	uint64_t protocol_rnd;
+//	uint8_t head_data[5];
+//	uint8_t i = 0,j = 13,k = 0;
+//	uint16_t check_sum;
+//	while(i < 10)
+//	{
+//		head_data_rnd |= HAL_RNG_GetRandomNumber(&hrng)%16;
+//		head_data_rnd <<= 4;
+//		i++;
+//	}
+//	head_data_rnd >>= 4;
+//	head_data[0] = (head_data_rnd >> 32) & 0xff;
+//	head_data[1] = (head_data_rnd >> 24) & 0xff;
+//	head_data[2] = (head_data_rnd >> 16) & 0xff;
+//	head_data[3] = (head_data_rnd >> 8) & 0xff;
+//  head_data[4] = head_data_rnd & 0xff;
+//	check_sum = HAL_CRC_Calculate(&hcrc,(uint32_t *)head_data,5);
+//	protocol_rnd = (head_data_rnd << 16) + check_sum;
+//	while(k < 14)
+//	{
+//		switch((protocol_rnd >> 4*j--) & 0xf)
+//		{
+//			case 0: protocol[k] = '0'; break;
+//			case 1: protocol[k] = '1'; break;
+//			case 2: protocol[k] = '2'; break;
+//			case 3: protocol[k] = '3'; break;
+//			case 4: protocol[k] = '4'; break;
+//			case 5: protocol[k] = '5'; break;
+//			case 6: protocol[k] = '6'; break;
+//			case 7: protocol[k] = '7'; break;
+//			case 8: protocol[k] = '8'; break;
+//			case 9: protocol[k] = '9'; break;
+//			case 10: protocol[k] = 'a'; break;
+//			case 11: protocol[k] = 'b'; break;
+//			case 12: protocol[k] = 'c'; break;
+//			case 13: protocol[k] = 'd'; break;
+//			case 14: protocol[k] = 'e'; break;
+//			case 15: protocol[k] = 'f'; break;
+//		}
+//		k++;
+//	}
+//}

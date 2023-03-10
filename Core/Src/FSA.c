@@ -2,6 +2,7 @@
 #include "lcd.h"
 #include "stdio.h"
 #include "math.h"
+#include "FastMath.h"
 
 const uint8_t States_Table[4][2] =
 {
@@ -105,7 +106,7 @@ int string_to_int(char *str)
 	}
 	while(i >= 0)
 	{
-		number += (*str - '0')*pow(10,i);
+		number += (*str - '0')*FastPow(10,i);
 		i--;
 		str++;
 	}

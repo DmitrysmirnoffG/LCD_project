@@ -5,6 +5,8 @@
 "lcd_project\main.o"
 "lcd_project\stm32l4xx_it.o"
 "lcd_project\stm32l4xx_hal_msp.o"
+"lcd_project\fastmath.o"
+"lcd_project\filter.o"
 "lcd_project\stm32l4xx_hal_adc.o"
 "lcd_project\stm32l4xx_hal_adc_ex.o"
 "lcd_project\stm32l4xx_hal.o"

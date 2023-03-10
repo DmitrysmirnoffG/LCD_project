@@ -27,6 +27,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "FSA.h"
+#include "Filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,33 +109,35 @@ static void MX_TIM7_Init(void);
 //		LCD_Print_String(voltage_str);	
 //	}
 //}
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) 
-{
-	if(htim->Instance == TIM6)
-  {
-		static uint8_t flag = 0;
-		uint32_t brightness = __HAL_TIM_GET_COMPARE(&htim2,TIM_CHANNEL_1);
-		if(flag == 0) 
-		{ 
-			brightness = brightness - 20;
-			if(brightness == 0) 
-			{
-				flag = 1;
-			}
-		} 
-		else 
-		{
-			brightness = brightness + 20;
-			if(brightness == 1000) 
-			{
-				flag = 0;
-			}
-		}
-		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,brightness);
-	}
-}
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) 
+//{
+//	if(htim->Instance == TIM6)
+//  {
+//		static uint8_t flag = 0;
+//		uint32_t brightness = __HAL_TIM_GET_COMPARE(&htim2,TIM_CHANNEL_1);
+//		if(flag == 0) 
+//		{ 
+//			brightness = brightness - 20;
+//			if(brightness == 0) 
+//			{
+//				flag = 1;
+//			}
+//		} 
+//		else 
+//		{
+//			brightness = brightness + 20;
+//			if(brightness == 1000) 
+//			{
+//				flag = 0;
+//			}
+//		}
+//		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,brightness);
+//	}
+//}
 //char read_value[ARRAY_ELEMENTS];
 //extern struct ring_buffer usart_recieve;
+float signal_noise[150];
+float signal_filtered[150];
 /* USER CODE END 0 */
 
 /**
@@ -144,7 +147,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  make_noise(signal_noise,150);
+	Filter(signal_noise,signal_filtered,150,5);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -253,12 +257,12 @@ int main(void)
 	
 	/*********************************************************************************/
 	
-	LCD_init();
-	LCD_Cursor_On_Off(0);
-	HAL_TIM_Base_Start_IT(&htim6);
-	HAL_TIM_Base_Start_IT(&htim7);
-	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
+//	LCD_init();
+//	LCD_Cursor_On_Off(0);
+//	HAL_TIM_Base_Start_IT(&htim6);
+//	HAL_TIM_Base_Start_IT(&htim7);
+//	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+//	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
 //	LCD_Print_String("Торговый автомат");
 //	LCD_Set_Cursor(2,0);
 //	LCD_Print_String(" Цена шок. 20р.");
@@ -270,8 +274,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		transmit_to_USART(signal_noise,signal_filtered,150);
 		//LCD_blink();
-		clock();
+		//clock();
     //random_print();
 		//read_from_ringbuffer(read_value,&usart_recieve);
     /* USER CODE END WHILE */

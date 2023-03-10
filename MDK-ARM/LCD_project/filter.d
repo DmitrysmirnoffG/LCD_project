@@ -1,5 +1,5 @@
-lcd_project/fsa.o: ..\Core\Src\FSA.c ..\Core\Inc\FSA.h ..\Core\Inc\main.h \
-  ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h \
+lcd_project/filter.o: ..\Core\Src\Filter.c ..\Core\Inc\Filter.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h \
   ..\Core\Inc\stm32l4xx_hal_conf.h \
   ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rcc.h \
   ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_def.h \
@@ -41,5 +41,7 @@ lcd_project/fsa.o: ..\Core\Src\FSA.c ..\Core\Inc\FSA.h ..\Core\Inc\main.h \
   ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_tim_ex.h \
   ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart.h \
   ..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart_ex.h \
-  ..\Core\Inc\lcd.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\Core\Inc\FastMath.h
+  ..\Core\Inc\FastMath.h C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\Core\Inc\FSA.h \
+  ..\Core\Inc\lcd.h

@@ -1,7 +1,7 @@
 Dependencies for Project 'LCD_project', Target 'LCD_project': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
 F (startup_stm32l476xx.s)(0x6401E408)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32L476xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o lcd_project/startup_stm32l476xx.o)
-F (..\Core\Src\lcd.c)(0x6401EAA1)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/lcd.o -MD)
+F (..\Core\Src\lcd.c)(0x640B070D)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/lcd.o -MD)
 I (..\Core\Inc\lcd.h)(0x6401D2C0)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
 I (..\Core\Inc\stm32l4xx_hal_conf.h)(0x6401E407)
@@ -49,7 +49,7 @@ I (..\Core\Inc\main.h)(0x6401E407)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63888F58)
 I (..\Core\Inc\FSA.h)(0x63E60DDD)
-F (..\Core\Src\FSA.c)(0x63FE057D)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/fsa.o -MD)
+F (..\Core\Src\FSA.c)(0x640AF244)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/fsa.o -MD)
 I (..\Core\Inc\FSA.h)(0x63E60DDD)
 I (..\Core\Inc\main.h)(0x6401E407)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
@@ -97,7 +97,8 @@ I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart_ex.h)(0x63C66FFC)
 I (..\Core\Inc\lcd.h)(0x6401D2C0)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63888F58)
-F (../Core/Src/main.c)(0x6401E8E0)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/main.o -MD)
+I (..\Core\Inc\FastMath.h)(0x6409B872)
+F (../Core/Src/main.c)(0x640B0C0D)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/main.o -MD)
 I (..\Core\Inc\main.h)(0x6401E407)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
 I (..\Core\Inc\stm32l4xx_hal_conf.h)(0x6401E407)
@@ -146,7 +147,8 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63888F58)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
 I (..\Core\Inc\FSA.h)(0x63E60DDD)
-F (../Core/Src/stm32l4xx_it.c)(0x6401E608)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/stm32l4xx_it.o -MD)
+I (..\Core\Inc\Filter.h)(0x640B0C0D)
+F (../Core/Src/stm32l4xx_it.c)(0x640B0669)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/stm32l4xx_it.o -MD)
 I (..\Core\Inc\main.h)(0x6401E407)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
 I (..\Core\Inc\stm32l4xx_hal_conf.h)(0x6401E407)
@@ -240,6 +242,59 @@ I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_tim.h)(0x63C66FFC)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_tim_ex.h)(0x63C66FFC)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart.h)(0x63C66FFC)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart_ex.h)(0x63C66FFC)
+F (..\Core\Src\FastMath.c)(0x640B072A)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/fastmath.o -MD)
+I (..\Core\Inc\FastMath.h)(0x6409B872)
+F (..\Core\Src\Filter.c)(0x640B0CDE)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/filter.o -MD)
+I (..\Core\Inc\Filter.h)(0x640B0C0D)
+I (..\Core\Inc\main.h)(0x6401E407)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
+I (..\Core\Inc\stm32l4xx_hal_conf.h)(0x6401E407)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rcc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_def.h)(0x63C66FFC)
+I (..\Drivers\CMSIS\Device\ST\STM32L4xx\Include\stm32l4xx.h)(0x63C66FFC)
+I (..\Drivers\CMSIS\Device\ST\STM32L4xx\Include\stm32l476xx.h)(0x63C66FFC)
+I (..\Drivers\CMSIS\Include\core_cm4.h)(0x63C66FD4)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x63888F58)
+I (..\Drivers\CMSIS\Include\cmsis_version.h)(0x63C66FD4)
+I (..\Drivers\CMSIS\Include\cmsis_compiler.h)(0x63C66FD4)
+I (..\Drivers\CMSIS\Include\cmsis_armclang.h)(0x63C66FD4)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x63888F58)
+I (C:\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x63888F58)
+I (..\Drivers\CMSIS\Include\mpu_armv7.h)(0x63C66FD4)
+I (..\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h)(0x63C66FFC)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x63888F58)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rcc_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_gpio.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_gpio_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_dma.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_cortex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_adc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_ll_adc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_adc_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_crc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_crc_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_exti.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_flash.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_flash_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_flash_ramfunc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_i2c.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_i2c_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_pwr.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_pwr_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rng.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rtc.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_rtc_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_tim.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_tim_ex.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart.h)(0x63C66FFC)
+I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal_uart_ex.h)(0x63C66FFC)
+I (..\Core\Inc\FastMath.h)(0x6409B872)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63888F58)
+I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63888F58)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63888F58)
+I (..\Core\Inc\FSA.h)(0x63E60DDD)
+I (..\Core\Inc\lcd.h)(0x6401D2C0)
 F (../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.c)(0x63C66FFC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -Wno-covered-switch-default -Wno-unreachable-code-break -I ../Core/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc -I ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I ../Drivers/CMSIS/Include-I./RTE/_LCD_project-IC:/Users/smirnov/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/smirnov/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.6.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32L476xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32L476xx-o lcd_project/stm32l4xx_hal_adc.o -MD)
 I (..\Drivers\STM32L4xx_HAL_Driver\Inc\stm32l4xx_hal.h)(0x63C66FFC)
 I (..\Core\Inc\stm32l4xx_hal_conf.h)(0x6401E407)

@@ -228,11 +228,11 @@ void DMA1_Channel6_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel6_IRQn 0 */
 	//get_time();
 	//get_date();
-	protocol_status = analyze_protocol(&det_protocol,buff);
-	if(protocol_status)
-		print_protocol(&det_protocol);
-	else
-		print_to_USART("Ошибка передачи данных\n");
+//	protocol_status = analyze_protocol(&det_protocol,buff);
+//	if(protocol_status)
+//		print_protocol(&det_protocol);
+//	else
+//		print_to_USART("Ошибка передачи данных\n");
   /* USER CODE END DMA1_Channel6_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_usart2_rx);
   /* USER CODE BEGIN DMA1_Channel6_IRQn 1 */
@@ -341,12 +341,12 @@ void TIM6_DAC_IRQHandler(void)
 void TIM7_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_IRQn 0 */
-	random_protocol();
-	protocol_status = analyze_protocol(&det_protocol,protocol);
-	if(protocol_status)
-		print_protocol(&det_protocol);
-	else
-		print_to_USART("Ошибка передачи данных\n");
+//	random_protocol();
+//	protocol_status = analyze_protocol(&det_protocol,protocol);
+//	if(protocol_status)
+//		print_protocol(&det_protocol);
+//	else
+//		print_to_USART("Ошибка передачи данных\n");
   /* USER CODE END TIM7_IRQn 0 */
   HAL_TIM_IRQHandler(&htim7);
   /* USER CODE BEGIN TIM7_IRQn 1 */
