@@ -49,6 +49,8 @@ ADC_HandleTypeDef hadc1;
 
 CRC_HandleTypeDef hcrc;
 
+DAC_HandleTypeDef hdac1;
+
 RNG_HandleTypeDef hrng;
 
 RTC_HandleTypeDef hrtc;
@@ -80,6 +82,7 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_CRC_Init(void);
 static void MX_TIM7_Init(void);
+static void MX_DAC1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -114,7 +117,7 @@ static void MX_TIM7_Init(void);
 //	if(htim->Instance == TIM6)
 //  {
 //		static uint8_t flag = 0;
-//		uint32_t brightness = __HAL_TIM_GET_COMPARE(&htim2,TIM_CHANNEL_1);
+//		uint32_t brightness = __HAL_TIM_GET_COMPARE(&htim2,TIM_CHANNEL_2);
 //		if(flag == 0) 
 //		{ 
 //			brightness = brightness - 20;
@@ -131,13 +134,13 @@ static void MX_TIM7_Init(void);
 //				flag = 0;
 //			}
 //		}
-//		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,brightness);
+//		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,brightness);
 //	}
 //}
 //char read_value[ARRAY_ELEMENTS];
 //extern struct ring_buffer usart_recieve;
-float signal_noise[150];
-float signal_filtered[150];
+float signal_noise[COUNTS];
+float signal_filtered[COUNTS];
 /* USER CODE END 0 */
 
 /**
@@ -147,8 +150,8 @@ float signal_filtered[150];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  make_noise(signal_noise,150);
-	Filter(signal_noise,signal_filtered,150,5);
+  make_noise(signal_noise,COUNTS);
+	Filter(signal_noise,signal_filtered,COUNTS,WINDOW);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -182,6 +185,7 @@ int main(void)
   MX_TIM3_Init();
   MX_CRC_Init();
   MX_TIM7_Init();
+  MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
 	
 	/*********************************ADC INIT****************************************/
@@ -261,20 +265,22 @@ int main(void)
 //	LCD_Cursor_On_Off(0);
 //	HAL_TIM_Base_Start_IT(&htim6);
 //	HAL_TIM_Base_Start_IT(&htim7);
-//	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+//	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
 //	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
 //	LCD_Print_String("Торговый автомат");
 //	LCD_Set_Cursor(2,0);
 //	LCD_Print_String(" Цена шок. 20р.");
 //	LCD_Set_Cursor(1,0);
 	//HAL_ADC_Start_IT(&hadc1);
+	HAL_DAC_Start(&hdac1,DAC_CHANNEL_1);
+	HAL_DAC_Start(&hdac1,DAC_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		transmit_to_USART(signal_noise,signal_filtered,150);
+		//transmit_to_USART(signal_noise,signal_filtered,COUNTS);
 		//LCD_blink();
 		//clock();
     //random_print();
@@ -466,6 +472,53 @@ static void MX_CRC_Init(void)
 }
 
 /**
+  * @brief DAC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DAC1_Init(void)
+{
+
+  /* USER CODE BEGIN DAC1_Init 0 */
+
+  /* USER CODE END DAC1_Init 0 */
+
+  DAC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN DAC1_Init 1 */
+
+  /* USER CODE END DAC1_Init 1 */
+  /** DAC Initialization
+  */
+  hdac1.Instance = DAC1;
+  if (HAL_DAC_Init(&hdac1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** DAC channel OUT1 config
+  */
+  sConfig.DAC_SampleAndHold = DAC_SAMPLEANDHOLD_DISABLE;
+  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+  sConfig.DAC_ConnectOnChipPeripheral = DAC_CHIPCONNECT_DISABLE;
+  sConfig.DAC_UserTrimming = DAC_TRIMMING_FACTORY;
+  if (HAL_DAC_ConfigChannel(&hdac1, &sConfig, DAC_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** DAC channel OUT2 config
+  */
+  if (HAL_DAC_ConfigChannel(&hdac1, &sConfig, DAC_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN DAC1_Init 2 */
+
+  /* USER CODE END DAC1_Init 2 */
+
+}
+
+/**
   * @brief RNG Initialization Function
   * @param None
   * @retval None
@@ -530,9 +583,9 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 0x23;
-  sTime.Minutes = 0x59;
-  sTime.Seconds = 0x50;
+  sTime.Hours = 0x0;
+  sTime.Minutes = 0x0;
+  sTime.Seconds = 0x0;
   sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
   sTime.StoreOperation = RTC_STOREOPERATION_RESET;
   if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
@@ -540,9 +593,9 @@ static void MX_RTC_Init(void)
     Error_Handler();
   }
   sDate.WeekDay = RTC_WEEKDAY_FRIDAY;
-  sDate.Month = RTC_MONTH_DECEMBER;
-  sDate.Date = 0x31;
-  sDate.Year = 0x19;
+  sDate.Month = RTC_MONTH_FEBRUARY;
+  sDate.Date = 0x1;
+  sDate.Year = 0x0;
 
   if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
   {
@@ -599,10 +652,10 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 500;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }

@@ -28,6 +28,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "FSA.h"
+#include "Filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,6 +63,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern ADC_HandleTypeDef hadc1;
+extern DAC_HandleTypeDef hdac1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
@@ -80,6 +82,9 @@ struct protocol det_protocol;
 char test_str[10];
 uint8_t protocol_status;
 extern char protocol[14];
+extern float signal_noise[COUNTS];
+extern float signal_filtered[COUNTS];
+uint16_t counts;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -205,7 +210,10 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-
+	counts = counts % COUNTS;
+  DAC->DHR12R1=signal_noise[counts]*COEF;
+  DAC->DHR12R2=signal_filtered[counts]*COEF;
+  counts++;
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
@@ -303,7 +311,7 @@ void USART2_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-  TIM6->CR1 ^= TIM_CR1_CEN;
+  //TIM6->CR1 ^= TIM_CR1_CEN;
 	//HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET);
 	//LCD_blink();
   /* USER CODE END EXTI15_10_IRQn 0 */
@@ -330,6 +338,7 @@ void TIM6_DAC_IRQHandler(void)
 //	print_to_USART(voltage_str);
   /* USER CODE END TIM6_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
+  HAL_DAC_IRQHandler(&hdac1);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_IRQn 1 */
@@ -341,6 +350,8 @@ void TIM6_DAC_IRQHandler(void)
 void TIM7_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_IRQn 0 */
+//	make_noise(signal_noise,COUNTS);
+//	Filter(signal_noise,signal_filtered,COUNTS,WINDOW);
 //	random_protocol();
 //	protocol_status = analyze_protocol(&det_protocol,protocol);
 //	if(protocol_status)

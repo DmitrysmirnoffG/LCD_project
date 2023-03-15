@@ -7,10 +7,29 @@
 #include "FSA.h"
 #include "lcd.h"
 
+double normal_distribution(void)
+{
+  double x = (double)rand() / RAND_MAX;
+  double y = (double)rand() / RAND_MAX;
+  double z = FastSqrt(-2*logf(x))*FastCos(2*PI*y)/30;
+  return z;
+}
+
+double uniform_distribution(void)
+{
+	double x = (rand()%1001 - 500)/10000.0f;
+	return x;
+}
+
 void make_noise(float* signal_noise,int N)
 {
-	for(uint8_t i = 0; i < N; i++)
-	 signal_noise[i] = FastSin(i*PI/180) + (rand()%1001 - 500)/10000.0f;
+	for(uint16_t i = 0; i < N; i++)
+	{
+		if(NOISE == 1)
+			signal_noise[i] = 1.5f + FastSin(i*PI/180) + NOISE_AMP*normal_distribution();
+		else
+			signal_noise[i] = 1.5f + FastSin(i*PI/180) + NOISE_AMP*uniform_distribution();
+	}
 }
 
 void Filter(float* input,float* output,int N,int window)
@@ -50,30 +69,29 @@ void Filter(float* input,float* output,int N,int window)
 	}
 }
 
-void transmit_to_USART(float* signal_noise,float* signal_filtered,int N)
-{
-	delay(1000);
-	static uint8_t flag = 0;
-	char signal_data[10];
-	if(flag == 0)
-	{
-		print_to_USART("Сигнал с шумом:");
-		print_to_USART("");
-		for(uint8_t i = 0; i < N; i++)
-		{
-			sprintf(signal_data,"%f",signal_noise[i]);
-			print_to_USART(signal_data);
-			clear_array(signal_data);
-		}
-		print_to_USART("---------------------------------");
-		print_to_USART("Отфильтрованный сигнал:");
-		print_to_USART("");
-		for(uint8_t i = 0; i < N; i++)
-		{
-			sprintf(signal_data,"%f",signal_filtered[i]);
-			print_to_USART(signal_data);
-			clear_array(signal_data);
-		}
-		flag = 1;
-  }
-}
+//void transmit_to_USART(float* signal_noise,float* signal_filtered,int N)
+//{
+//	static uint8_t flag = 0;
+//	char signal_data[10];
+//	if(flag == 0)
+//	{
+//		print_to_USART("Сигнал с шумом:");
+//		print_to_USART("");
+//		for(uint16_t i = 0; i < N; i++)
+//		{
+//			sprintf(signal_data,"%f",signal_noise[i]);
+//			print_to_USART(signal_data);
+//			clear_array(signal_data);
+//		}
+//		print_to_USART("---------------------------------");
+//		print_to_USART("Отфильтрованный сигнал:");
+//		print_to_USART("");
+//		for(uint16_t i = 0; i < N; i++)
+//		{
+//			sprintf(signal_data,"%f",signal_filtered[i]);
+//			print_to_USART(signal_data);
+//			clear_array(signal_data);
+//		}
+//		flag = 1;
+//  }
+//}

@@ -279,7 +279,7 @@ void LCD_Cursor_On_Off(_Bool flag)
 
 void set_brightness(uint16_t br)
 {
-	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,br);
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,br);
 }
 
 //uint8_t analyze_protocol(struct protocol* prot,char* buff)
